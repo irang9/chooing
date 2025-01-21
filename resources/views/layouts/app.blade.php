@@ -13,18 +13,66 @@
 </head>
 <body>
     <header>
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">My Application</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <!-- 추가 메뉴 항목 추가 가능 -->
-                </ul>
+            <div class="container-fluid">
+                <!-- 브랜드 또는 로고 -->
+                <a class="navbar-brand" href="/">{{ config('app.name', 'My Website') }}</a>
+                <!-- 메뉴 아이콘 (모바일용) -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- 메뉴 항목들 (왼쪽 정렬) -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">홈</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employees">사원 정보</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">휴가 관리</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">공지사항</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">업무 자료</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">게시판</a>
+                        </li>
+                        
+                    </ul>
+                    <!-- 로그인/로그아웃과 알림, 검색 (오른쪽 정렬) -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- 관리 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">관리</a>
+                        </li>
+                        <!-- 알림 아이콘 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-bell"></i> <!-- 부트스트랩 아이콘 사용 -->
+                            </a>
+                        </li>
+                        <!-- 로그인/로그아웃 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">로그인</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">로그아웃</a>
+                        </li>
+                        <!-- 검색 -->
+                        <li class="nav-item">
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">검색</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -34,7 +82,7 @@
     </div>
 
     <footer class="bg-light text-center py-3 mt-4">
-        <p>&copy; 2025 My Application. All rights reserved.</p>
+        <p>&copy; 2025 {{ config('app.name', 'My Website') }}. All rights reserved.</p>
     </footer>
 
     <!-- Bootstrap 5 JS (CDN) -->
