@@ -37,17 +37,13 @@ class EmployeeController extends Controller
      * Display the specified employee or show a form to create a new employee.
      */
     public function view($id = null)
-    // public function view($id)
     {
-        dd('Controller is working', $id);  // 디버깅용
-        
         if ($id == 'new') {
-            // return view('employees.view'); // 새 직원 입력 페이지로 이동
-            return view('employees.view', ['employee' => null]);
+            return view('employees.form', ['employee' => null]);
         }
 
-        $employee = Employee::findOrFail($id); // 기존 직원 정보를 찾아서
-        return view('employees.view', compact('employee')); // 기존 직원 정보 페이지
+        $employee = Employee::findOrFail($id);
+        return view('employees.form', compact('employee'));
     }
 
     /**

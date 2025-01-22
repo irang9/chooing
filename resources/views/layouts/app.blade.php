@@ -36,7 +36,7 @@
                             <a class="nav-link active" aria-current="page" href="/">홈</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/employees">사원 정보</a>
+                            <a class="nav-link" href="{{ route('staff.index') }}">사원 정보</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">휴가 관리</a>
@@ -48,9 +48,8 @@
                             <a class="nav-link" href="#">업무 자료</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">게시판</a>
+                            <a class="nav-link" href="{{ route('posts.index') }}">게시판</a>
                         </li>
-                        
                     </ul>
                     <!-- 로그인/로그아웃과 알림, 검색 (오른쪽 정렬) -->
                     <ul class="navbar-nav ms-auto">
