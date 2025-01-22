@@ -1,14 +1,12 @@
 <?php
 
-// ...existing code...
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request; // Request 클래스 추가
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\VacationController;
-
-// ...existing code...
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +52,17 @@ Route::get('/vacation', function () {
 
 Route::resource('vacation', VacationController::class);
 
-// ...existing code...
+// 관리자 대시보드 페이지
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard'); // resources/views/admin/dashboard.blade.php
+});
+
+// 휴가 시스템 설정 페이지
+Route::get('/vacation/setting', function () {
+    return view('vacation.setting'); // resources/views/vacation/setting.blade.php
+})->name('vacation.setting');
+
+Route::post('/vacation/setting', function (Request $request) {
+    // 설정 저장 로직 추가
+    return redirect()->route('vacation.setting')->with('success', '설정이 저장되었습니다.');
+})->name('vacation.setting.save);

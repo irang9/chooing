@@ -21,13 +21,17 @@ class VacationController extends Controller
     public function store(Request $request)
     {
         $vacation = new Vacation();
-        $vacation->type = $request->type;
-        $vacation->start_date = $request->start_date;
-        $vacation->end_date = $request->end_date;
+        $vacation->fill($request->all());
         $vacation->status = '등록됨';
         $vacation->save();
 
         return redirect()->route('vacation.index');
+    }
+
+    public function show($id)
+    {
+        $vacation = Vacation::findOrFail($id);
+        return view('vacation.show', compact('vacation'));
     }
 
     public function edit($id)
@@ -39,10 +43,8 @@ class VacationController extends Controller
     public function update(Request $request, $id)
     {
         $vacation = Vacation::findOrFail($id);
-        $vacation->type = $request->type;
-        $vacation->start_date = $request->start_date;
-        $vacation->end_date = $request->end_date;
-        $vacation->status = $request->status;
+        $vacation->fill($request->all());
+        $vacation->status = $vacation->status; // 기존 status 유지
         $vacation->save();
 
         return redirect()->route('vacation.index');

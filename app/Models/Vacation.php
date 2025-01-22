@@ -10,6 +10,6 @@ class Vacation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type', 'start_date', 'end_date', 'status'
+        'type', 'start_date', 'end_date', 'memo'
     ];
 }

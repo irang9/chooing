@@ -55,7 +55,7 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- 관리 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">관리</a>
+                            <a class="nav-link" href="{{ url('/admin/dashboard') }}">관리</a>
                         </li>
                         <!-- 알림 아이콘 -->
                         <li class="nav-item">

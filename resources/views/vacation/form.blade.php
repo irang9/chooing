@@ -53,21 +53,22 @@
         </div>
         <button type="submit" class="btn btn-primary">{{ isset($vacation) ? '수정' : '등록' }}</button>
         <a href="{{ route('vacation.index') }}" class="btn btn-secondary">취소</a>
+        @if(isset($vacation))
+            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $vacation->id }})">삭제</button>
+        @endif
     </form>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+<!-- 삭제 확인 모달 -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="validationModalLabel">알림</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="modalMessage">
+            <div class="modal-body">
+                정말로 삭제합니까?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteButton">삭제</button>
             </div>
         </div>
     </div>
@@ -85,36 +86,38 @@ document.addEventListener('DOMContentLoaded', function () {
     const endTimeInput = document.getElementById('end_time');
     const vacationDuration = document.getElementById('vacation_duration');
     const vacationForm = document.getElementById('vacationForm');
-    const modalMessage = document.getElementById('modalMessage');
-    const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
     const startDateDisplay = document.getElementById('start_date_display');
     const endDateDisplay = document.getElementById('end_date_display');
 
+    function updateFormFields() {
+        const selectedType = document.querySelector('input[name="type"]:checked').value;
+        if (selectedType === '연차' || selectedType === '경조사') {
+            startTimeContainer.style.display = 'none';
+            endTimeContainer.style.display = 'none';
+            endDateContainer.style.display = 'block';
+            startDateInput.readOnly = false;
+            endDateInput.readOnly = false;
+            startDateInput.value = '{{ date('Y-m-d') }}';
+            endDateInput.value = '{{ date('Y-m-d') }}';
+            endDateInput.min = startDateInput.value;
+            endDateInput.max = new Date(new Date(startDateInput.value).setMonth(new Date(startDateInput.value).getMonth() + 1)).toISOString().split('T')[0];
+            updateVacationDays();
+        } else {
+            startTimeContainer.style.display = 'block';
+            endTimeContainer.style.display = 'block';
+            endDateContainer.style.display = 'none';
+            startDateInput.readOnly = false;
+            endDateInput.readOnly = true;
+            startDateInput.value = '{{ date('Y-m-d') }}';
+            endDateInput.value = startDateInput.value;
+            startTimeInput.value = '09:00';
+            updateVacationHours();
+        }
+    }
+
     typeRadios.forEach(radio => {
-        radio.addEventListener('change', function () {
-            if (this.value === '연차' || this.value === '경조사') {
-                startTimeContainer.style.display = 'none';
-                endTimeContainer.style.display = 'none';
-                endDateContainer.style.display = 'block';
-                startDateInput.readOnly = false;
-                endDateInput.readOnly = false;
-                startDateInput.value = '{{ date('Y-m-d') }}';
-                endDateInput.value = '{{ date('Y-m-d') }}';
-                endDateInput.min = startDateInput.value;
-                endDateInput.max = new Date(new Date(startDateInput.value).setMonth(new Date(startDateInput.value).getMonth() + 1)).toISOString().split('T')[0];
-                updateVacationDays();
-            } else {
-                startTimeContainer.style.display = 'block';
-                endTimeContainer.style.display = 'block';
-                endDateContainer.style.display = 'none';
-                startDateInput.readOnly = false;
-                endDateInput.readOnly = true;
-                startDateInput.value = '{{ date('Y-m-d') }}';
-                endDateInput.value = startDateInput.value;
-                startTimeInput.value = '09:00';
-                updateVacationHours();
-            }
-        });
+        radio.addEventListener('change', updateFormFields);
     });
 
     startDateInput.addEventListener('change', function () {
@@ -146,18 +149,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const endTime = endTimeInput.value ? new Date(startDateInput.value + 'T' + endTimeInput.value) : null;
 
         if ((startTime && endTime && startTime > endTime) || startDate > endDate) {
-            modalMessage.textContent = '등록 내용을 다시 확인해주세요.';
-            modalMessage.style.color = 'red';
-            validationModal.show();
+            alert('등록 내용을 다시 확인해주세요.');
         } else {
-            modalMessage.textContent = '등록 되었습니다.';
-            modalMessage.style.color = 'black';
-            validationModal.show();
-            validationModal._element.addEventListener('hidden.bs.modal', function () {
-                vacationForm.submit();
-            }, { once: true });
+            const message = '{{ isset($vacation) ? "수정되었습니다." : "등록되었습니다." }}';
+            alert(message);
+            vacationForm.submit();
         }
     });
+
+    window.confirmDelete = function (id) {
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+        confirmDeleteButton.onclick = function () {
+            deleteModal.hide();
+            alert('삭제되었습니다.');
+            document.getElementById('deleteForm-' + id).submit();
+        };
+        deleteModal.show();
+    };
 
     function updateVacationDays() {
         const startDate = new Date(startDateInput.value);
@@ -203,11 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 초기화
     updateDateDisplay(startDateInput, startDateDisplay);
     updateDateDisplay(endDateInput, endDateDisplay);
-    if (document.querySelector('input[name="type"]:checked').value === '연차' || document.querySelector('input[name="type"]:checked').value === '경조사') {
-        updateVacationDays();
-    } else {
-        updateVacationHours();
-    }
+    updateFormFields();
 });
 </script>
 @endsection

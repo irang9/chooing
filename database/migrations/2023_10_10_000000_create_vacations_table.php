@@ -14,6 +14,7 @@ class CreateVacationsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('status');
+            $table->text('memo')->nullable(); // memo 컬럼 추가
             $table->timestamps();
         });
     }
