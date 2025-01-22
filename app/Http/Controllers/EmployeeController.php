@@ -26,7 +26,7 @@ class EmployeeController extends Controller
             'phone' => 'required',
             'email' => 'required|email',
             'hire_date' => 'required|date',
-            'status' => 'required',  // 상태 필드 검증
+            'status' => 'required',
         ]);
 
         Employee::create($validated);
@@ -39,6 +39,8 @@ class EmployeeController extends Controller
     public function view($id = null)
     // public function view($id)
     {
+        dd('Controller is working', $id);  // 디버깅용
+        
         if ($id == 'new') {
             // return view('employees.view'); // 새 직원 입력 페이지로 이동
             return view('employees.view', ['employee' => null]);

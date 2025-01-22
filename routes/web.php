@@ -29,13 +29,13 @@ use App\Http\Controllers\EmployeeController;
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
 
 // 새 직원 입력 페이지 (id가 'new'일 때)
-Route::get('/employees/new', [EmployeeController::class, 'view'])->name('employees.create'); 
+Route::get('/employees/new', [EmployeeController::class, 'view'])->name('employees.create');
 
 // 기존 직원 보기 및 수정 페이지
-Route::get('/employees/{id}', [EmployeeController::class, 'view'])->name('employees.view'); 
+Route::get('/employees/{id}', [EmployeeController::class, 'view'])->name('employees.view');
 
 // 새 직원 추가
-Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');  
+Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
 
 // 기존 직원 정보 업데이트
 Route::put('/employees/{id}', [EmployeeController::class, 'update'])->name('employees.update');
