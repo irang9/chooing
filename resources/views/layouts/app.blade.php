@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('staff.index') }}">사원 정보</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">휴가 관리</a>
+                            <a class="nav-link" href="{{ url('/vacation') }}">휴가 관리</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">공지사항</a>
@@ -88,7 +88,7 @@
     </div>
 
     <footer class="bg-light text-center py-3 mt-4">
-        <p>&copy; 2025 {{ config('app.name', 'My Website') }}. All rights reserved.</p>
+        <p>문의 : 강이랑</p>
     </footer>
 
     <!-- Bootstrap 5 JS (CDN) -->

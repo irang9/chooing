@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\VacationController;
 
 // ...existing code...
 
@@ -46,5 +47,11 @@ Route::resource('posts', PostController::class);
 
 // 사원 관련 라우트
 Route::resource('staff', StaffController::class);
+
+Route::get('/vacation', function () {
+    return view('vacation.index'); // resources/views/vacation/index.blade.php
+});
+
+Route::resource('vacation', VacationController::class);
 
 // ...existing code...
