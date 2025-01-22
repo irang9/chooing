@@ -1,0 +1,148 @@
+@charset "utf-8";
+@import '../variables';
+
+// Loading spinner
+
+
+
+/* loading spinner - 2022.11.14 Loading spinner */
+// 로딩 타입 여러개
+// .modal, .layer :: 모달 타입, 레이어 타입(중앙)
+// .blurry :: 중앙 흐리게
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    // background:$white;
+    background-color:none;
+    width: 96%;
+    height: 100%;
+    transition: all 0.3s ease;
+    z-index: 999;
+    &.blurry {
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(4px);
+    }
+    &.modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    &.layer {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: auto;
+        height: auto;
+        padding:40px;
+        @include border-radius(100px);
+        &.blurry {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+        }
+    }
+    
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    div {
+        position: absolute;
+        top: 33px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #3c4e9b;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        &:nth-child(1) {
+            left: 8px;
+            animation: lds-ellipsis1 0.6s infinite;
+            -webkit-animation: lds-ellipsis1 0.6s infinite;
+}
+        &:nth-child(2) {
+            left: 8px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+        &:nth-child(3) {
+            left: 32px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+        &:nth-child(4) {
+            left: 56px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+    }
+}
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+
+/* Loading spinner : 2024.07.22 돌아가는 형태 */
+
+.spinner {
+    margin:auto;
+    svg {
+        width: 3.75em;
+        transform-origin: center;
+        animation: rotate 2s linear infinite;
+        -webkit-animation: rotate 2s linear infinite;
+}
+    circle {
+        fill: none;
+        stroke: $point;
+        stroke-width: 4;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+        animation: dash 1.5s ease-in-out infinite;
+    }
+}
+
+
+@keyframes rotate {
+100% {
+    transform: rotate(360deg);
+}
+}
+
+@keyframes dash {
+0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+}
+50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+}
+100% {
+    stroke-dashoffset: -125px;
+}
+}

@@ -1,0 +1,65 @@
+@charset "utf-8";
+@import '../variables';
+
+
+.banner {
+    &.strip {
+        height:44px;
+        background:$slate-100;
+        position:relative;
+        @include mobile-lg {
+            background:#DAE6FF;
+            height:34px;
+        }
+        .wrap {
+            margin:0 auto;
+            height:100%;
+            text-align:center;
+            @include mobile {
+                margin:0 18px 0 6px;
+            }
+        }
+        a {
+            @include button-hover(110%);
+        }
+        .view {
+            &-pc {
+                display:block;
+                @include mobile-lg {
+                    display:none;
+                }
+            }
+            &-mobile {
+                display:none;
+                @include mobile-lg {
+                    display:block;
+                }
+            }
+        }
+        
+        img {
+            height:100%;
+            margin:0 auto;
+        }
+        button.btn {
+            position:absolute;
+            right:12px;
+            top:10px;
+            cursor:pointer;
+            width:24px;
+            height:24px;
+            &.btn_close {
+                font-size:0;
+                background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z" fill="%23212121"/></svg>') no-repeat center;
+                opacity:.2;
+                &:hover {
+                    opacity:1;
+                }
+            }
+            @include mobile {
+                right:4px;
+                top:6px;
+            }
+        }
+    }
+}

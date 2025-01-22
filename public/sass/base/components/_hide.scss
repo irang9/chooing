@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.d-none,
+.sr-only {
+    display:none !important;
+}
+*[role='readonly'] {
+    display:none;
+}

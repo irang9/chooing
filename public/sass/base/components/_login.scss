@@ -1,0 +1,90 @@
+@charset "utf-8";
+@import '../variables';
+
+
+// LOGIN
+.login_info {
+    display: inline-block;
+    // width: 225px;
+    line-height: 1.4;
+    padding: 10px 20px;
+    margin:24px auto;
+    text-align: center;
+    font-size: 14px;
+    color: $slate-500;
+    border-radius: 10px;
+    word-break:keep-all;
+    .login-title {
+        color:$primary;
+        font-size:18px;
+        margin-bottom:16px;
+    }
+    strong {
+        font-weight:bold;
+    }
+}
+.req_login {
+    text-align:center; // in the request modal popup
+}
+// social buttons section
+.social-login {
+    display:flex;
+    list-style:none;
+    margin:0 auto 70px;
+    padding:0 20px;
+    justify-content:center;
+    gap:16px;
+    @include mobile-lg {
+        flex-direction: column;
+        max-width:#{$mobile-xs};
+        margin-bottom:20px;
+        gap:8px;
+    }
+    li {
+        text-align:center;
+        a {
+            display:block;
+            padding: 22px 35px;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            border:1px solid #E0E0E0;
+            color:$black;
+            @include transition(.5s);
+            @include mobile-lg { 
+                padding:10px;
+                display:flex;
+                gap:16px;
+            }
+            img {
+                width:36px;
+                display:block;
+                margin:24px auto 39px;
+                @include mobile-lg { 
+                    width:26px;
+                    margin:auto;
+                    flex:0;
+                }
+            }
+            span {
+                display:block;
+                margin:20px 0 0;
+                @include mobile-lg { 
+                    flex:1;
+                    text-align:center;
+                    margin: auto;
+                }
+            }
+            &:hover {
+                border-color:$primary;
+                img {
+                    // width:42px;
+                    // margin:20px auto 37px;
+                }
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+@import 'base/typo';
+
+// typo
+* {
+    font-family: $font-basic !important;
+}
+button {
+    white-space: nowrap;
+}

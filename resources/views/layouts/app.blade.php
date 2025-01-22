@@ -9,7 +9,14 @@
 
     <!-- Bootstrap 5 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <!-- common css -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- blade name css -->
+    @php
+        $currentView = \Request::route()->getName();
+        $cssFile = public_path('css/' . $currentView . '.css');
+    @endphp
+    <link href="{{ file_exists($cssFile) ? asset('css/' . $currentView . '.css') : '' }}" rel="stylesheet">
 </head>
 <body>
     <header>

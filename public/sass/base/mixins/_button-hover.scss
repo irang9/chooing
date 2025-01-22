@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+
+// button hover 
+@mixin button-hover($brightness) {
+    &:hover {
+        //background-color: inherit;
+		//border-color: inherit;
+        filter:brightness($brightness);
+        -webkit-filter:brightness($brightness);
+        cursor:pointer;
+    }
+}

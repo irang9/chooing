@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+// default font
+@import 'typo/spoqa';
+
+// gooogle material icons
+@import 'typo/google';
+
+// title
+// @import 'typo/gmarket';
+// @import 'typo/scoredream';
+// @import 'typo/rokaf';
+// @import 'typo/kimjungchul';
+
+
+
+// ------- typo
+$font-basic : "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif;
+$font-family-sans-serif: "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif;
+$font-monospace :"Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-title : "KimjungchulGothic", "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif;

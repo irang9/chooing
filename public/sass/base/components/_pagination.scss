@@ -1,0 +1,88 @@
+@charset "utf-8";
+@import '../variables';
+
+// paging, pagination
+
+.paging {
+    margin: 50px;
+    @include mobile-lg {
+        margin:40px 4px;
+    }
+    ul.pagination {
+        list-style: none;
+        padding:0;
+        margin:0;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+        font-size:15px;
+        @include mobile-lg {
+            font-size:13px;
+            gap:6px;
+            flex-wrap:wrap;
+        }
+        li {
+            &[aria-label*=pagination]  {
+                display:block;
+                max-width:26px;
+                border-radius:4px;
+                background:none;
+                border:1px solid $slate-100;
+                -webkit-border-radius:4px;
+                -moz-border-radius:4px;
+                -ms-border-radius:4px;
+                -o-border-radius:4px;
+                text-align:center;
+                font-size: 26px;
+                line-height: 1;
+                padding: 0 9px;
+                margin:0 12px;
+                color:$slate-100;
+                font-weight:light;
+                @include mobile-lg {
+                    margin:0;
+                }
+            }
+            a {
+                color:$slate-300;
+                display:block;
+                padding:0 4px;
+                &:visited {
+                    color:$slate-300;
+                }
+                &:hover {
+                    color:$black-900;
+                }
+                &[aria-label*=pagination] {
+                    display:block;
+                    max-width:26px;
+                    border-radius:4px;
+                    background:$slate-100;
+                    -webkit-border-radius:4px;
+                    -moz-border-radius:4px;
+                    -ms-border-radius:4px;
+                    -o-border-radius:4px;
+                    text-align:center;
+                    font-size: 26px;
+                    line-height: 1;
+                    padding: 0 10px;
+                    margin:0 12px;
+                    color:$primary;
+                    font-weight:light;
+                }
+            }
+            &.active {
+                color:$primary;
+                font-weight:bold;
+                padding:0 6px;
+            }
+            &.disabled {
+                color:$slate-300;
+            }
+        }
+    }
+}
+.right > .paging {
+    margin:0; // 하단 페이징이 아닌 경우 (실적 등)
+}

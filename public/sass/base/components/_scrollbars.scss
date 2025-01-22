@@ -1,0 +1,19 @@
+@charset "utf-8";
+@import '../variables';
+
+// Scrollbars
+
+body *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    @include border-radius(6px);
+    &-thumb {
+        // background-color: $line-300;
+        background-color: $slate-300;
+        @include border-radius(6px);
+    }
+    &-track {
+        background-color: $slate-100;
+        @include border-radius(6px);
+    }
+}

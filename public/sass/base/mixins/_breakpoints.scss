@@ -1,0 +1,49 @@
+@charset "utf-8";
+@import '../variables';
+
+
+@mixin mobile-xxs { // 진짜 제일 작은사이즈 존재하는 경우
+    @media (max-width: #{$mobile-xxs - 1px}) {
+        @content;
+    }
+}
+@mixin mobile-xs { // 미니사이즈 존재하는 경우
+    @media (max-width: #{$mobile-xs - 1px}) {
+        @content;
+    }
+}
+@mixin mobile-sm { // 일반 모바일 사이즈까지 적용
+    @media (max-width: #{$mobile-sm - 1px}) {
+        @content;
+    }
+}
+@mixin mobile { // 일반 모바일 사이즈까지 적용
+    @media (max-width: #{$mobile - 1px}) {
+        @content;
+    }
+}
+@mixin mobile-lg { // 좀 큰 모바일 사이즈까지 적용
+    @media (max-width: #{$mobile-lg - 1px}) {
+        @content;
+    }
+}
+@mixin tablet { // 태블릿
+    @media (max-width: #{$tablet - 1px}) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (max-width: #{$desktop - 1px}) {
+        @content;
+    }
+}
+@mixin desktop-lg {
+    @media (max-width: #{$desktop-lg}) {
+        @content;
+    }
+}
+@mixin desktop-xl {
+    @media (max-width: #{$desktop-xl}) {
+        @content;
+    }
+}

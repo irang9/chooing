@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+// Transforms : Browser Prefixes
+@mixin transform($transforms) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}
+
+// 쓰던거
+@mixin rotate($x: 0, $y: 0, $z: 0) {
+	transform: 
+	rotateX(#{$x}deg) 
+	rotateY(#{$y}deg) 
+	rotateZ(#{$z}deg);
+}
+// uses
+// @include rotate(0, -10, -16); 
+
+
+// 마지막에 쓰던거
+@mixin transform-ro-tr($x: 0, $y: 0, $z: 0, $translateX: 0, $translateY: 0) {
+	transform: 
+	rotateX(#{$x}deg) 
+	rotateY(#{$y}deg) 
+	rotateZ(#{$z}deg)
+	translate(#{$translateX}, #{$translateY});// 여기는 단위 까지
+}
+// @include rotate-translate(0, 0, -16, 0, 0px); 
+
+// Transform - Scale
+@mixin scale($scale) {
+	@include transform(scale($scale));
+}
+
+// Transform - Translate
+@mixin translate ($x, $y) {
+	@include transform(translate($x, $y));
+}
+
+// Transform - Skew
+@mixin skew ($x, $y) {
+	@include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+// Transform Origin
+@mixin transform-origin($x, $y) {
+    -webkit-transform-origin: $x $y;
+    -moz-transform-origin: $x $y;
+    -ms-transform-origin: $x $y;
+    transform-origin: $x $y;
+}
+// // uses
+// // @include transform-origin(0, 0);
+
+
+// // -------- //
+

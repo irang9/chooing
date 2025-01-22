@@ -1,0 +1,22 @@
+@charset "utf-8";
+@import '../variables';
+
+// HELP : 도움말 표시
+img.btinfo { // 구형
+    width:14px;
+    height:14px;
+    opacity:.3;
+    vertical-align: middle;
+}
+.material-icons[class*=help] {
+    color:$slate-300;
+    font-size:16px;
+    vertical-align: middle;
+    cursor:pointer;
+    &.help-txt {
+        cursor: help;
+    }
+}
+
+
+

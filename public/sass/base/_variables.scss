@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+// 2024.07.23
+// 각 서브 페이지용 SCSS 파일과 서브 공통 SCSS 파일이 따로 있고, 이 파일의 변수를 사용하기 위해 임포트하여 사용합니다.
+// 이 파일은 별도 CSS 파일로 컴파일 되지 않고 각 공통 페이지용 CSS 파일내에 포함되어 컴파일 됩니다.
+
+// ------- typo
+$font-basic : "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif;
+$font-family-sans-serif: "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif;
+$font-monospace :"Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-title : "KimjungchulGothic", "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif;
+
+// ------- Breakpoints
+$mobile-xxs: 320px; //@mixin mobile-supermini
+$mobile-xs: 360px; // @mixin mobile-mini // :(
+$mobile-sm: 480px; // @mixin mobile
+$mobile: 576px; // @mixin mobile
+$mobile-lg: 768px; // @mixin mobile-max
+$tablet: 992px; // @mixin tablet
+$desktop-lg: 1200px;
+$desktop-xl: 1400px;
+
+
+//  ------- Global Colors
+$white : #FCFCFC;
+$white-000: #ffffff;
+$white-real : $white-000;
+
+$black: #212121;
+$black-000 : #000000;
+$black-real: $black-000;
+
+$gray-900 : #212121; 
+$gray-800 : #303030;
+$gray-700 : #414141; 
+$gray-600 : #636363;
+$gray-500 : #868686;
+$gray-400 : #B1B1B1;
+$gray-300 : #D9D9D9;
+$gray-200 : #EDEDED;
+$gray-100 : #F7F7FA; 
+
+$slate-900 : #292F41;
+$slate-800 : #394055;
+$slate-700 : #535A6F;
+$slate-600 : #6F778C;
+$slate-500 : #858DA2;
+$slate-400 : #A0A7B9;
+$slate-300 : #BFC5D3;
+$slate-200 : #D8DDE7;
+$slate-100 : #ECEFF5;
+
+$slate-light-900 : #4F5965;
+$slate-light-800 : #637083;
+$slate-light-700 : #6E7D91;
+$slate-light-600 : #8798AF;
+$slate-light-500 : #A8B7CB;
+$slate-light-400 : #C6D0DD;
+$slate-light-300 : #DEE4EC;
+$slate-light-200 : #EAEEF4;
+$slate-light-100 : #F4F6FA;
+
+// $link:#263fb0;
+$link:#335599;
+$link-point:#4262f7;
+
+$pager-active :#6f83ce;
+
+$positive : #F81C51;
+$negative: #1971C2;
+$neutral: #6C7285;
+
+$button-dark :#3d4451;
+$button-dark-hover :#292e38;
+
+$valid : #00c252;
+$invalid : #ff6f6f;
+
+$warning : #ff6f6f;
+
+$spacer:16px;
+
+
+// ------- Local Colors
+
+$text-900: #303647;
+$text-800: #454E6B;
+$text-500: #76809E;
+$text-400: #9CA4C2;
+$text-300: #C8CCDF;
+
+
+$bg-500 : #ABB2C6;
+$bg-300 : #D0D4E5;
+$bg-200 : #E3E6F0;
+$bg-100 : #F0F2F9;
+
+
+
+$primary-900: #121333;
+$primary-800: #0D1A4D;
+$primary-700: #0D247A;
+$primary: #374FA8;
+$primary-400 : #5974D3;
+$primary-300 :#7B93E5;
+$primary-200: #BBCAFF;
+$primary-100 :#DFE8FF;
+
+$secondary:#4EC6BE;
+$point: #374FA8;
+$green:#87D326;
+$purple:#D943C1;
+
+
+$bg-dark:#2D3449;
+$primary-500-dark:#475498;
+$link-dark: #9bbcfe;
+
+$bg-ai : #D6DDF1;

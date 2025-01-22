@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* Fonts */
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+/* Fonts */
+@import url(//fonts.googleapis.com/icon?family=Material+Icons);
+@import url(//fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap); /* 실적 타이틀 */
+@import url(//fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp);
+@import url(//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+* {
+  font-family: "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, Lato, Roboto, Arial, sans-serif !important;
+}
+
+button {
+  white-space: nowrap;
+}

@@ -1,0 +1,35 @@
+@charset "utf-8";
+@import '../abstracts/variables';
+
+/* Header */
+
+body {
+	font-family: $font-basic;
+	line-height:1.4;
+	* {
+		word-break: keep-all;
+	}
+}
+
+div#container { 
+	min-width:$mobile-xxs;
+	max-width:$mobile;
+	width:100%;
+	margin:0 auto;
+	height:100%;
+	display:flex;
+	flex-direction: column;
+	// overflow-x:hidden;
+	position:relative;
+	&:before {
+		/* hiding left menu */
+		content:'';
+		display:block;
+		background:white;
+		height:100vh;
+		width:300px;
+		position:absolute;
+		left:-300px;
+		z-index:3;
+	}
+}

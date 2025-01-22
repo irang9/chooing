@@ -1,0 +1,46 @@
+@charset "utf-8";
+@import '../variables';
+
+
+.layout {
+	text-align: center;   // 검토 대상
+	min-width:$mobile-xs;
+	display: flex;
+    flex-direction: column;
+    height: 120%;
+    flex: 1;
+	// .content {}
+}
+
+.text-left {
+    text-align:left;
+}
+.text-right {
+    text-align:right;
+}
+.blue_font {
+    color:#05a3e5;
+}
+
+.positive,
+.stock-up,
+.gapup {
+	color:$positive !important;
+}
+.negative ,
+.stock-down,
+.gapdown {
+	color:$negative !important;
+}
+// .negative2 { color:$stock-negative2;}
+.neutral { color:$neutral !important;}
+
+.font-title {
+	font-family:$font-title;
+}
+
+
+// Captcha
+.grecaptcha-badge {
+	display:none !important;
+}

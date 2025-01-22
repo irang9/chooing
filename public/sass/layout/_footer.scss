@@ -1,0 +1,119 @@
+@charset "utf-8";
+@import '../abstracts/variables';
+
+/* #footer */
+div#footer {
+	margin-top:auto;
+	background:$bg-500;
+	position:relative;
+	color:$white;
+	padding:28px;
+	font-size:11px;
+	a {
+		&[aria-label='stockbotus'] {
+			display:block;
+			color:$white;
+			font-size:20px;
+			font-weight:bold;
+			letter-spacing: -0.03em;
+		}
+		&[aria-data='email'] {
+			display:flex;
+			color:$white;
+			font-size:16px;
+			align-items:center;
+			&:before {
+				content:'\e0be';
+				font-family: 'Material Icons';
+				font-size:10px;
+				display:flex;
+				background:$primary;
+				color:$white;
+				@include border-radius(50%);
+				width:16px;
+				height:16px;
+				margin-right:4px;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+	}
+	ul {
+		margin:0;
+		padding:0;
+		font-size:11px;
+		line-height:1.4;
+		&.notice {
+			margin:20px 0 20px 12px;
+			text-indent:-10px;
+			li {
+				margin-bottom:0.2rem;
+				&:last-of-type {
+					margin-bottom:0;
+				}
+				&:before {
+					content:'';
+					width:4px;
+					height:4px;
+					background:$white;
+					display:inline-block;
+					margin:0 6px 4px 0;
+					@include border-radius(20px);
+				}
+			}
+		}
+		&.info {
+			margin:0;
+			li {
+				display:inline-block;
+				&:after {
+					content:'';
+					display:inline-block;
+					width:1px;
+					height:8px;
+					background:$white;
+					opacity:.3;
+					margin:0 6px;
+				}
+				&:last-of-type:after {
+					display:none;
+				}
+			}
+		}
+		&.company {
+			margin:0;
+			li {
+				display:inline-block;
+				&:after {
+					content:'';
+					display:inline-block;
+					width:1px;
+					height:8px;
+					background:$white;
+					opacity:.3;
+					margin:0 6px;
+				}
+				&:last-of-type:after {
+					display:none;
+				}
+			}
+		}
+	}
+	
+	div.company {
+
+	}
+	.btn-primary#gotoTop {
+		background:$primary;
+		@include border-radius(4px);
+		position:absolute;
+		top: -15px;
+		right: 15px;
+		width: 30px;
+		height: 30px;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
