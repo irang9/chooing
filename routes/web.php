@@ -62,7 +62,3 @@ Route::get('/vacation/setting', function () {
     return view('vacation.setting'); // resources/views/vacation/setting.blade.php
 })->name('vacation.setting');
 
-Route::post('/vacation/setting', function (Request $request) {
-    // 설정 저장 로직 추가
-    return redirect()->route('vacation.setting')->with('success', '설정이 저장되었습니다.');
-})->name('vacation.setting.save);
