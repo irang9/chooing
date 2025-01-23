@@ -14,14 +14,25 @@
 
 
 <div class="bd-content">
-    <ul>
-        @foreach ($posts as $post)
-            <li>
-                <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a>
-                <span>{{ $post->created_at->format('Y-m-d H:i') }}</span>
-                <span>작성자: {{ $post->author_name ?? '미정' }}</span>
-            </li>
-        @endforeach
-    </ul>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>작성자</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($posts as $post)
+            <tr>
+                <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                <td title="수정일 : {{ $post->updated_at }}">{{ $post->created_at }}</td>
+                <td>{{ $post->author_name ?? '미정' }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
+
 @endsection

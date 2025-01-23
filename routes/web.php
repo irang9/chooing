@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request; // Request 클래스 추가
+use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\VacationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,12 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard'); // resources/views/admin/dashboard.blade.php
 });
 
-// 휴가 시스템 설정 페이지
-Route::get('/vacation/setting', function () {
-    return view('vacation.setting'); // resources/views/vacation/setting.blade.php
-})->name('vacation.setting');
+// 로그인 페이지
+Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
 
+// 로그인 페이지 라우트가 AdminLoginController로 변경된 이유는 보안 및 유지보수 용이성을 위해서입니다.
 
+Route::get('/office/index', function () {
+    return view('office.index'); // resources/views/office/index.blade.php
+});
 

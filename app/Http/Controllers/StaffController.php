@@ -22,17 +22,22 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'company_phone' => 'nullable',
-            'extension' => 'nullable',
-            'email' => 'required|email',
-            'hire_date' => 'required|date',
-            'status' => 'required',
+            'name' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'company_phone' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255',
+            'hire_date' => 'nullable|date',
+            'status' => 'nullable|string|max:255',
+            'position' => 'nullable|string|max:255', // 직함 필드 추가
+            'birthday' => 'nullable|date', // 생일 필드 추가
+            'memo' => 'nullable|string',
+            'start_time' => 'nullable|date_format:H:i', // 출근 시간 필드 추가
+            'end_time' => 'nullable|date_format:H:i', // 퇴근 시간 필드 추가
+            'work_days' => 'nullable|numeric|min:1|max:7' // 주 근무시간 필드 추가
         ]);
 
         Staff::create($validated);
-        return redirect()->route('staff.index');
+        return redirect()->route('staff.index')->with('success', '사원이 등록되었습니다.');
     }
 
     public function show($id)
@@ -50,14 +55,18 @@ class StaffController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'company_phone' => 'nullable',
-            'extension' => 'nullable',
-            'email' => 'required|email',
-            'hire_date' => 'required|date',
-            'status' => 'required',
-            'memo' => 'nullable'
+            'name' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'company_phone' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255',
+            'hire_date' => 'nullable|date',
+            'status' => 'nullable|string|max:255',
+            'position' => 'nullable|string|max:255', // 직함 필드 추가
+            'birthday' => 'nullable|date', // 생일 필드 추가
+            'memo' => 'nullable|string',
+            'start_time' => 'nullable|date_format:H:i', // 출근 시간 필드 추가
+            'end_time' => 'nullable|date_format:H:i', // 퇴근 시간 필드 추가
+            'work_days' => 'nullable|numeric|min:1|max:7' // 주 근무시간 필드 추가
         ]);
 
         $staff = Staff::findOrFail($id);
@@ -77,7 +86,7 @@ class StaffController extends Controller
             }
         }
 
-        return redirect()->route('staff.show', $staff->id);
+        return redirect()->route('staff.show', $staff->id)->with('success', '사원이 수정되었습니다.');
     }
 
     public function destroy($id)

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email');
             $table->date('hire_date');
             $table->string('status');
+            $table->string('position')->nullable(); // 직함 필드 추가
+            $table->date('birthday')->nullable(); // 생일 필드 추가
             $table->timestamps();
         });
     }

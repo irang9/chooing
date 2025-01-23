@@ -4,8 +4,8 @@
 
 <div class="bd-intro">
     <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <div class="mb-3 mb-md-0 d-flex text-nowrap"><a class="btn btn-sm btn-primary rounded-2" href="{{ route('staff.create') }}" title="새 사원 추가하기">
-        사원 추가
+        <div class="mb-3 mb-md-0 d-flex text-nowrap"><a class="btn btn-sm btn-primary" href="{{ route('staff.create') }}" title="사원 등록하기">
+        사원 등록
         </a>
         </div>
         <h1>사원 정보</h1>

@@ -42,8 +42,5 @@
             @endforeach
         </tbody>
     </table>
-    <div class="mt-3">
-        <a href="{{ route('vacation.setting') }}" class="btn btn-secondary">휴가 시스템 설정</a>
-    </div>
 </div>
 @endsection

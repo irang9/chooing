@@ -10,14 +10,19 @@
 
 
 <div class="bd-content">
-
-
-    <h1>인트라넷</h1>
-
+<h2>사원 정보 세팅</h2>
 <ul>
-    <li>목록 : index</li>
-    <li>신규/수정: create/edit - form으로 관리</li>
-    <li>보기 : show</li>
+    <li>재직상태</li>
+    <li>근무요일</li>
+    <li>근무시간</li>
+    <li></li>
+</ul>
+
+<h2>휴가 정보 세팅</h2>
+<ul>
+    <li>연차 계산</li>
+    <li>반차/반반차 세팅</li>
+    <li>휴가일수 임의 조정</li>
 </ul>
 
 

@@ -9,9 +9,9 @@
 
 <div class="bd-content">
     <h1>{{ $post->title }}</h1>
-    <div>{{ $post->content }}</div>
-    <div>작성일: {{ $post->created_at->format('Y-m-d H:i') }}</div>
+    <div title="수정일 : {{ $post->updated_at }}">작성일: {{ $post->created_at }}</d></div>
     <div>작성자: {{ $post->author_name ?? '미정' }}</div>
+    <div>{{ $post->content }}</div>
     
     <button type="button" class="btn btn-secondary" onclick="history.back()">목록으로</button>
     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">수정</a>

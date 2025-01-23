@@ -76,8 +76,8 @@
         <div class="mb-3">
             <label class="form-label">근무시간</label>
             <p>
-                출근 <input type="time" id="start_time" name="start_time" value="09:00"> ~ 퇴근 <input type="time" id="end_time" name="end_time" value="18:00"> 
-                <span id="total_hours"></span>, 주 <input type="number" id="work_days" name="work_days" value="5" min="1" max="7" step="0.5">일/<span id="weekly_hours"></span>
+                출근 <input type="time" id="start_time" name="start_time" value="{{ $staff->start_time ?? '09:00' }}"> ~ 퇴근 <input type="time" id="end_time" name="end_time" value="{{ $staff->end_time ?? '18:00' }}"> 
+                <span id="total_hours"></span>, 주 <input type="number" id="work_days" name="work_days" value="{{ $staff->work_days ?? '5' }}" min="1" max="7" step="0.5">일/<span id="weekly_hours"></span>
                 <div>점심시간 : 11:20 ~ 12:20</div>
             </p>
         </div>
@@ -178,14 +178,9 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const staffForm = document.getElementById('staffForm');
-    staffForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+    staffForm.addEventListener('submit', function () {
         const message = '{{ isset($staff) ? "저장되었습니다." : "등록되었습니다." }}';
         alert(message);
-        staffForm.submit();
-        setTimeout(function() {
-            window.location.href = '{{ route('staff.index') }}';
-        }, 1000); // 1초 후 리다이렉트
     });
 });
 </script>
