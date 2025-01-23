@@ -13,3 +13,27 @@
 button {
   white-space: nowrap;
 }
+
+.bd-intro {
+  margin-top: 3rem;
+}
+
+.bd-content {
+  margin-bottom: 3rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+body .bd-main {
+  flex: 1;
+}
+body footer {
+  margin-top: auto;
+}

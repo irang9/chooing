@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vacation extends Model
+class VacationHistory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'type', 'start_date', 'end_date', 'status', 'memo'
+        'vacation_id', 'field', 'old_value', 'new_value'
     ];
 
-    public function histories()
+    public function vacation()
     {
-        return $this->hasMany(VacationHistory::class);
+        return $this->belongsTo(Vacation::class);
     }
 }

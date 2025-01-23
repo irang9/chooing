@@ -1,7 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="bd-intro">
+    <div class="d-md-flex align-items-center justify-content-between">
+        <h1>게시판</h1>
+    </div>
+</div>
+
+<div class="bd-content">
     <h1>{{ $post->title }}</h1>
-    <p>{{ $post->content }}</p>
-    <a href="{{ route('posts.index') }}">Back to Posts</a>
+    <div>{{ $post->content }}</div>
+    <div>작성일: {{ $post->created_at->format('Y-m-d H:i') }}</div>
+    <div>작성자: {{ $post->author_name ?? '미정' }}</div>
+    
+    <button type="button" class="btn btn-secondary" onclick="history.back()">목록으로</button>
+    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">수정</a>
+    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">삭제</button>
+    </form>
+</div>
 @endsection

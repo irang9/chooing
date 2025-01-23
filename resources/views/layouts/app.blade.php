@@ -17,6 +17,10 @@
         $cssFile = public_path('css/' . $currentView . '.css');
     @endphp
     <link href="{{ file_exists($cssFile) ? asset('css/' . $currentView . '.css') : '' }}" rel="stylesheet">
+    <link href='https://fullcalendar.io/releases/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.10.2/lib/moment.min.js'></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+    <script src='https://fullcalendar.io/releases/fullcalendar/3.10.2/locale/ko.js'></script>
 </head>
 <body>
     <header>
@@ -82,13 +86,17 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <!-- 여기서 다른 페이지 내용이 들어갑니다. -->
-        @yield('content')
+    <div class="bd-main">
+        <div class="container">
+            <!-- 여기서 다른 페이지 내용이 들어갑니다. -->
+            @yield('content')
+        </div>
     </div>
 
-    <footer class="bg-light text-center py-3 mt-4">
-        <p>문의 : 강이랑</p>
+    <footer class=" py-3 mt-4">
+        <div class="container-fluid text-end">
+            <p>문의 : 강이랑</p>
+        </div>
     </footer>
 
     <!-- Bootstrap 5 JS (CDN) -->

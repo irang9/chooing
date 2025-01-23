@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vacation;
+use App\Models\VacationHistory;
 
 class VacationController extends Controller
 {
@@ -34,20 +35,27 @@ class VacationController extends Controller
         return view('vacation.show', compact('vacation'));
     }
 
-    public function edit($id)
-    {
-        $vacation = Vacation::findOrFail($id);
-        return view('vacation.edit', compact('vacation'));
-    }
-
     public function update(Request $request, $id)
     {
         $vacation = Vacation::findOrFail($id);
-        $vacation->fill($request->all());
-        $vacation->status = $vacation->status; // 기존 status 유지
-        $vacation->save();
+        $originalData = $vacation->getOriginal();
 
-        return redirect()->route('vacation.index');
+        $vacation->update($request->all());
+
+        $changes = $vacation->getChanges();
+
+        foreach ($changes as $field => $newValue) {
+            if ($field !== 'updated_at') {
+                VacationHistory::create([
+                    'vacation_id' => $vacation->id,
+                    'field' => $field,
+                    'old_value' => $originalData[$field],
+                    'new_value' => $newValue,
+                ]);
+            }
+        }
+
+        return redirect()->route('vacation.show', $vacation->id)->with('success', '휴가 정보가 수정되었습니다.');
     }
 
     public function destroy($id)

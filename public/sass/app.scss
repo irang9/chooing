@@ -9,3 +9,25 @@
 button {
     white-space: nowrap;
 }
+.bd-intro {
+    margin-top:3rem;
+}
+.bd-content {
+    margin-bottom:3rem;
+}
+html,
+body {
+    height:100%;
+}
+body {
+    display:flex;
+    flex-direction: column;
+    header {
+    }
+    .bd-main {
+        flex:1;
+    }
+    footer {
+        margin-top:auto;
+    }
+}

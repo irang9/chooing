@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>{{ isset($vacation) ? '휴가 수정' : '휴가 등록' }}</h1>
+
+<div class="bd-intro">
+    <div class="d-md-flex align-items-center justify-content-between">
+        <h1>{{ isset($vacation) ? '휴가 수정' : '휴가 등록' }} < 휴가 관리</h1>
+    </div>
+</div>
+
+<div class="bd-content">
     <form id="vacationForm" action="{{ isset($vacation) ? route('vacation.update', $vacation->id) : route('vacation.store') }}" method="POST">
         @csrf
         @if(isset($vacation))
@@ -52,14 +58,39 @@
             <textarea class="form-control" id="memo" name="memo">{{ isset($vacation) ? $vacation->memo : '' }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">{{ isset($vacation) ? '수정' : '등록' }}</button>
-        <a href="{{ route('vacation.index') }}" class="btn btn-secondary">취소</a>
+        <a href="{{ route('vacation.index') }}" class="btn btn-secondary">목록으로</a>
         @if(isset($vacation))
-            <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $vacation->id }})">삭제</button>
+            <button type="button" class="btn btn-danger d-block ms-auto" onclick="confirmDelete({{ $vacation->id }})">삭제</button>
         @endif
     </form>
+
+    <div class="mt-5">
+        <h2>수정 기록</h2>
+        <ul>
+            @if($vacation->histories && $vacation->histories->isNotEmpty())
+                @foreach($vacation->histories->sortByDesc('created_at') as $edit)
+                    <li>
+                        {{ $edit->created_at->format('Y.m.d(D) H:i') }}
+                        @if($edit->field == 'type')
+                            휴가 종류 변경 : {{ $edit->new_value }}
+                        @elseif($edit->field == 'start_date')
+                            휴가 시작일 변경 : {{ $edit->new_value }}
+                        @elseif($edit->field == 'memo')
+                            메모 내용 변경 : {{ $edit->new_value }}
+                        @else
+                            {{ $edit->field }} 변경 {{ $edit->old_value }} → {{ $edit->new_value }}
+                        @endif
+                    </li>
+                @endforeach
+            @else
+                <li>수정 기록이 없습니다.</li>
+            @endif
+        </ul>
+    </div>
 </div>
 
 <!-- 삭제 확인 모달 -->
+@if(isset($vacation))
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -73,6 +104,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -98,8 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
             endDateContainer.style.display = 'block';
             startDateInput.readOnly = false;
             endDateInput.readOnly = false;
-            startDateInput.value = '{{ date('Y-m-d') }}';
-            endDateInput.value = '{{ date('Y-m-d') }}';
             endDateInput.min = startDateInput.value;
             endDateInput.max = new Date(new Date(startDateInput.value).setMonth(new Date(startDateInput.value).getMonth() + 1)).toISOString().split('T')[0];
             updateVacationDays();
@@ -109,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
             endDateContainer.style.display = 'none';
             startDateInput.readOnly = false;
             endDateInput.readOnly = true;
-            startDateInput.value = '{{ date('Y-m-d') }}';
             endDateInput.value = startDateInput.value;
             startTimeInput.value = '09:00';
             updateVacationHours();
@@ -214,4 +243,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateFormFields();
 });
 </script>
+
+
 @endsection

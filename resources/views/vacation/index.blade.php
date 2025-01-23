@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>휴가 관리</h1>
-    <div class="mb-3">
-        <a href="{{ route('vacation.create') }}" class="btn btn-primary">휴가 등록</a>
+<div class="bd-intro">
+    <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
+        <div class="mb-3 mb-md-0 d-flex text-nowrap"><a class="btn btn-sm btn-primary rounded-2" href="{{ route('vacation.create') }}" title="휴가 등록">
+        휴가 등록
+        </a>
+        </div>
+        <h1>휴가 관리</h1>
     </div>
+</div>
+
+
+<div class="bd-content">
+    
     <table class="table">
         <thead>
             <tr>
@@ -19,7 +27,7 @@
         <tbody>
             @foreach($vacations as $vacation)
             <tr>
-                <td><a href="{{ route('vacation.edit', $vacation->id) }}">홍길동</a></td>
+                <td><a href="{{ route('vacation.show', $vacation->id) }}">홍길동</a></td>
                 <td>{{ $vacation->type }}</td>
                 <td>{{ $vacation->start_date }}</td>
                 <td>
