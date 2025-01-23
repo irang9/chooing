@@ -17,4 +17,9 @@ class Vacation extends Model
     {
         return $this->hasMany(VacationHistory::class);
     }
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
 }

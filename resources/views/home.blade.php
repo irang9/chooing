@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="bd-intro">
-    <div class="d-md-flex align-items-center justify-content-between">
+    <div class="d-md-flex align-items-center justify-content-start">
         <h1>인트라넷 홈</h1>
+        <div class="date ms-3">{{ \Carbon\Carbon::now()->locale('ko')->isoFormat('Y.MM.D(ddd)') }}</div>
     </div>
 </div>
 
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             @if(is_array($vacations) || is_object($vacations))
                 @foreach($vacations as $vacation)
                 {
-                    title: '{{ $vacation->type }} - 이름 (3.5)',
+                    title: '{{ $vacation->type }} - {{ $vacation->staff ? $vacation->staff->name : 'Unknown' }} ({{ $vacation->duration }})',
                     start: '{{ $vacation->start_date }}',
                     end: '{{ $vacation->end_date }}',
                     url: '{{ route('vacation.show', $vacation->id) }}',

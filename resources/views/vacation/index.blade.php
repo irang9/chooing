@@ -11,9 +11,7 @@
     </div>
 </div>
 
-
 <div class="bd-content">
-    
     <table class="table">
         <thead>
             <tr>
@@ -27,7 +25,7 @@
         <tbody>
             @foreach($vacations as $vacation)
             <tr>
-                <td><a href="{{ route('vacation.show', $vacation->id) }}">홍길동</a></td>
+                <td><a href="{{ route('vacation.show', $vacation->id) }}">{{ $vacation->staff ? $vacation->staff->name : 'Unknown' }}</a></td>
                 <td>{{ $vacation->type }}</td>
                 <td>{{ $vacation->start_date }}</td>
                 <td>

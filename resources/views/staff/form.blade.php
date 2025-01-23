@@ -4,7 +4,7 @@
 
 <div class="bd-intro">
     <div class="d-md-flex align-items-center justify-content-between">
-        <h1>{{ isset($staff) ? '사원 수정' : '사원 등록' }} < 사원 관리</h1>
+        <h1>{{ isset($staff) ? '사원 수정' : '사원 등록' }} < <a href="/staff">사원 관리</a></h1>
     </div>
 </div>
 
@@ -19,8 +19,16 @@
             <input type="text" class="form-control" name="name" value="{{ $staff->name ?? '' }}" required>
         </div>
         <div class="mb-3">
+            <label class="form-label">직함</label>
+            <input type="text" class="form-control" name="position" value="{{ $staff->position ?? '' }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">생일</label>
+            <input type="date" class="form-control" name="birthday" value="{{ $staff->birthday ?? '' }}">
+        </div>
+        <div class="mb-3">
             <label class="form-label">휴대폰</label>
-            <input type="text" class="form-control" name="phone" value="{{ $staff->phone ?? '' }}" required>
+            <input type="text" class="form-control" name="phone" value="{{ $staff->phone ?? '' }}">
         </div>
         <div class="mb-3">
             <label class="form-label">회사전화</label>
@@ -32,11 +40,11 @@
         </div>
         <div class="mb-3">
             <label class="form-label">이메일</label>
-            <input type="email" class="form-control" name="email" value="{{ $staff->email ?? '' }}" required>
+            <input type="email" class="form-control" name="email" value="{{ $staff->email ?? '' }}">
         </div>
         <div class="mb-3">
             <label class="form-label">입사일</label>
-            <input type="date" class="form-control" name="hire_date" value="{{ $staff->hire_date ?? '' }}" required>
+            <input type="date" class="form-control" name="hire_date" value="{{ $staff->hire_date ?? '' }}">
         </div>
         @if(isset($staff))
         <div class="mb-3">
@@ -54,7 +62,16 @@
         @endif
         <div class="mb-3">
             <label class="form-label">상태</label>
-            <input type="text" class="form-control" name="status" value="{{ $staff->status ?? '' }}">
+            <div>
+                <input type="radio" id="status_active" name="status" value="재직" {{ (isset($staff) && $staff->status == '재직') ? 'checked' : '' }}>
+                <label for="status_active">재직</label>
+                <input type="radio" id="status_outsource" name="status" value="외주" {{ (isset($staff) && $staff->status == '외주') ? 'checked' : '' }}>
+                <label for="status_outsource">외주</label>
+                <input type="radio" id="status_retired" name="status" value="퇴사" {{ (isset($staff) && $staff->status == '퇴사') ? 'checked' : '' }}>
+                <label for="status_retired">퇴사</label>
+                <input type="radio" id="status_other" name="status" value="기타" {{ (!isset($staff) || $staff->status == '기타') ? 'checked' : '' }}>
+                <label for="status_other">기타</label>
+            </div>
         </div>
         <div class="mb-3">
             <label class="form-label">근무시간</label>
@@ -68,13 +85,43 @@
             <label class="form-label">메모</label>
             <textarea class="form-control" name="memo" rows="3">{{ old('memo', $staff->memo ?? '') }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">저장</button>
-        <a href="{{ route('staff.index') }}" class="btn btn-secondary">{{ isset($staff) ? '목록으로' : '취소' }}</a>
-        @if(isset($staff))
-            <button type="button" class="btn btn-danger d-block ms-auto" onclick="confirmDelete({{ $staff->id }})">삭제</button>
-        @endif
+
+        <div class="buttons d-flex align-items-center justify-content-between gap-3">
+            <a href="{{ route('staff.index') }}" class="btn btn-secondary">{{ isset($staff) ? '목록으로' : '취소' }}</a>
+            <button type="submit" class="btn btn-primary px-5 me-auto">저장</button>
+            
+            @if(isset($staff))
+                <button type="button" class="btn btn-danger btn-sm ms-auto" onclick="confirmDelete({{ $staff->id }})">삭제</button>
+            @endif
+        </div>
     </form>
 </div>
+
+@if(isset($staff))
+<div class="mt-5">
+    <h2>수정 기록</h2>
+    <ul>
+        @if($staff->editHistory && $staff->editHistory->isNotEmpty())
+            @foreach($staff->editHistory->sortByDesc('created_at') as $edit)
+                <li>
+                    {{ $edit->created_at->format('Y.m.d') }} ({{ ['일', '월', '화', '수', '목', '금', '토'][$edit->created_at->dayOfWeek] }}) {{ $edit->created_at->format('H:i') }} : 
+
+
+                    @if($edit->type == 'work_time')
+                        근무시간 : {{ $edit->old_value }} → {{ $edit->new_value }}
+                    @elseif($edit->type == 'memo')
+                        메모 : {{ $edit->old_value }} → {{ $edit->new_value }}
+                    @else
+                        {{ $edit->field }} : {{ $edit->old_value }} → {{ $edit->new_value }}
+                    @endif
+                </li>
+            @endforeach
+        @else
+            <li>수정 기록이 없습니다.</li>
+        @endif
+    </ul>
+</div>
+@endif
 
 @if(isset($staff))
 <!-- 삭제 확인 모달 -->
@@ -136,6 +183,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const message = '{{ isset($staff) ? "저장되었습니다." : "등록되었습니다." }}';
         alert(message);
         staffForm.submit();
+        setTimeout(function() {
+            window.location.href = '{{ route('staff.index') }}';
+        }, 1000); // 1초 후 리다이렉트
     });
 });
 </script>

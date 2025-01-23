@@ -2,5 +2,4 @@
 
 @section('content')
     @include('vacation.form')
-
 @endsection

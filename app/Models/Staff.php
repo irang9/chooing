@@ -24,4 +24,8 @@ class Staff extends Model
     {
         return $this->hasMany(EditHistory::class);
     }
+    public function vacations()
+    {
+        return $this->hasMany(Vacation::class);
+    }
 }
