@@ -67,7 +67,7 @@
     <div class="mt-5">
         <h2>수정 기록</h2>
         <ul>
-            @if($vacation->histories && $vacation->histories->isNotEmpty())
+            @if($vacation->histories->isNotEmpty())
                 @foreach($vacation->histories->sortByDesc('created_at') as $edit)
                     <li>
                         {{ $edit->created_at->format('Y.m.d(D) H:i') }}
