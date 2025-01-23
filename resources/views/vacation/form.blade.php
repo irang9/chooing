@@ -16,11 +16,11 @@
         @endif
         <div class="mb-3">
             <label for="employee_name" class="form-label">사원 이름:</label>
-            <span id="employee_name">나중에 회원 등록해서 표기할 것</span>
+            <span id="employee_name">강이랑 (나중에 회원 등록해서 표기할 것)</span>
         </div>
         <div class="mb-3">
             <label for="vacation_days" class="form-label">휴가 일수:</label>
-            <span id="vacation_days">나중에 휴가 일수 계산식 넣어서 표기할 것</span>
+            <span id="vacation_days">14일 (나중에 휴가 일수 계산식 넣어서 표기할 것)</span>
         </div>
         <div class="mb-3">
             <label for="type" class="form-label">휴가 종류</label><br>
@@ -57,36 +57,12 @@
             <label for="memo" class="form-label">메모</label>
             <textarea class="form-control" id="memo" name="memo">{{ isset($vacation) ? $vacation->memo : '' }}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">{{ isset($vacation) ? '수정' : '등록' }}</button>
+        <button type="submit" class="btn btn-primary">{{ isset($vacation) ? '저장' : '등록' }}</button>
         <a href="{{ route('vacation.index') }}" class="btn btn-secondary">목록으로</a>
         @if(isset($vacation))
             <button type="button" class="btn btn-danger d-block ms-auto" onclick="confirmDelete({{ $vacation->id }})">삭제</button>
         @endif
     </form>
-
-    <div class="mt-5">
-        <h2>수정 기록</h2>
-        <ul>
-            @if($vacation->histories->isNotEmpty())
-                @foreach($vacation->histories->sortByDesc('created_at') as $edit)
-                    <li>
-                        {{ $edit->created_at->format('Y.m.d(D) H:i') }}
-                        @if($edit->field == 'type')
-                            휴가 종류 변경 : {{ $edit->new_value }}
-                        @elseif($edit->field == 'start_date')
-                            휴가 시작일 변경 : {{ $edit->new_value }}
-                        @elseif($edit->field == 'memo')
-                            메모 내용 변경 : {{ $edit->new_value }}
-                        @else
-                            {{ $edit->field }} 변경 {{ $edit->old_value }} → {{ $edit->new_value }}
-                        @endif
-                    </li>
-                @endforeach
-            @else
-                <li>수정 기록이 없습니다.</li>
-            @endif
-        </ul>
-    </div>
 </div>
 
 <!-- 삭제 확인 모달 -->
@@ -180,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if ((startTime && endTime && startTime > endTime) || startDate > endDate) {
             alert('등록 내용을 다시 확인해주세요.');
         } else {
-            const message = '{{ isset($vacation) ? "수정되었습니다." : "등록되었습니다." }}';
+            const message = '{{ isset($vacation) ? "저장되었습니다." : "등록되었습니다." }}';
             alert(message);
             vacationForm.submit();
         }

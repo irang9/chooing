@@ -71,9 +71,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">로그인</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">로그아웃</a>
-                        </li>
                         <!-- 검색 -->
                         <li class="nav-item">
                             <form class="d-flex" role="search">

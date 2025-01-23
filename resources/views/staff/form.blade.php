@@ -16,11 +16,11 @@
         @endif
         <div class="mb-3">
             <label class="form-label">이름</label>
-            <input type="text" class="form-control" name="name" value="{{ $staff->name ?? '' }}">
+            <input type="text" class="form-control" name="name" value="{{ $staff->name ?? '' }}" required>
         </div>
         <div class="mb-3">
             <label class="form-label">휴대폰</label>
-            <input type="text" class="form-control" name="phone" value="{{ $staff->phone ?? '' }}">
+            <input type="text" class="form-control" name="phone" value="{{ $staff->phone ?? '' }}" required>
         </div>
         <div class="mb-3">
             <label class="form-label">회사전화</label>
@@ -32,11 +32,11 @@
         </div>
         <div class="mb-3">
             <label class="form-label">이메일</label>
-            <input type="email" class="form-control" name="email" value="{{ $staff->email ?? '' }}">
+            <input type="email" class="form-control" name="email" value="{{ $staff->email ?? '' }}" required>
         </div>
         <div class="mb-3">
             <label class="form-label">입사일</label>
-            <input type="date" class="form-control" name="hire_date" value="{{ $staff->hire_date ?? '' }}">
+            <input type="date" class="form-control" name="hire_date" value="{{ $staff->hire_date ?? '' }}" required>
         </div>
         @if(isset($staff))
         <div class="mb-3">
@@ -74,28 +74,6 @@
             <button type="button" class="btn btn-danger d-block ms-auto" onclick="confirmDelete({{ $staff->id }})">삭제</button>
         @endif
     </form>
-
-    <div class="mt-5">
-        <h2>수정 기록</h2>
-        <ul>
-            @if($staff->editHistory)
-                @foreach($staff->editHistory->sortByDesc('created_at') as $edit)
-                    <li>
-                        {{ $edit->created_at->format('Y.m.d(D) H:i') }} 
-                        @if($edit->type == 'work_time')
-                            근무시간 변경 {{ $edit->old_value }} -> {{ $edit->new_value }}
-                        @elseif($edit->type == 'memo')
-                            메모 내용 변경 {{ $edit->old_value }} -> {{ $edit->new_value }}
-                        @else
-                            {{ $edit->field }} 변경 {{ $edit->old_value }} → {{ $edit->new_value }}
-                        @endif
-                    </li>
-                @endforeach
-            @else
-                <li>수정 기록이 없습니다.</li>
-            @endif
-        </ul>
-    </div>
 </div>
 
 @if(isset($staff))
@@ -106,15 +84,13 @@
             <div class="modal-body">
                 정말로 삭제합니까?
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer"> 
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                 <button type="button" class="btn btn-danger" id="confirmDeleteButton">삭제</button>
             </div>
         </div>
     </div>
 </div>
-
-
 @endif
 
 <script>
@@ -157,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const staffForm = document.getElementById('staffForm');
     staffForm.addEventListener('submit', function (event) {
         event.preventDefault();
-        const message = '{{ isset($staff) ? "수정되었습니다." : "등록되었습니다." }}';
+        const message = '{{ isset($staff) ? "저장되었습니다." : "등록되었습니다." }}';
         alert(message);
         staffForm.submit();
     });
