@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\VacationController;
+use App\Http\Controllers\EditHistoryController;
 
 /*
 |--------------------------------------------------------------------------

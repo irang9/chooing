@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\EditHistory;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -56,12 +57,27 @@ class StaffController extends Controller
             'email' => 'required|email',
             'hire_date' => 'required|date',
             'status' => 'required',
+            'memo' => 'nullable'
         ]);
 
         $staff = Staff::findOrFail($id);
+        $oldValues = $staff->getOriginal();
+
         $staff->update($validated);
 
-        return redirect()->route('staff.index');
+        foreach ($validated as $key => $value) {
+            if ($oldValues[$key] != $value) {
+                EditHistory::create([
+                    'staff_id' => $staff->id,
+                    'type' => $key == 'memo' ? 'memo' : 'field',
+                    'field' => $key,
+                    'old_value' => $oldValues[$key],
+                    'new_value' => $value
+                ]);
+            }
+        }
+
+        return redirect()->route('staff.show', $staff->id);
     }
 
     public function destroy($id)

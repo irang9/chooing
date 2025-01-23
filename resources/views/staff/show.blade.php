@@ -3,40 +3,57 @@
 @section('content')
 <div class="container">
     <h1>사원 정보</h1>
-    <div class="mb-3">
-        <label class="form-label">이름</label>
-        <p>{{ $staff->name }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">휴대폰</label>
-        <p>{{ $staff->phone }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">회사전화</label>
-        <p>{{ $staff->company_phone }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">내선번호</label>
-        <p>{{ $staff->extension }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">이메일</label>
-        <p>{{ $staff->email }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">입사일</label>
-        <p>{{ $staff->hire_date }}</p>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">상태</label>
-        <p>{{ $staff->status }}</p>
-    </div>
-    <a href="{{ route('staff.edit', $staff->id) }}" class="btn btn-warning">수정</a>
-    <form action="{{ route('staff.destroy', $staff->id) }}" method="POST" style="display:inline;">
+    @include('staff.form', ['staff' => $staff ?? null])
+    <form action="{{ route('staff.destroy', $staff->id ?? 0) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger">삭제</button>
+        <button type="submit" class="btn btn-danger d-block ms-auto" {{ isset($staff) ? '' : 'disabled' }}>삭제</button>
     </form>
-    <a href="{{ route('staff.index') }}" class="btn btn-secondary">목록으로</a>
+    @if(isset($staff))
+    <div class="mt-3">
+        <h3>수정 기록</h3>
+        <ul>
+            @if($staff->editHistory)
+                @foreach($staff->editHistory->sortByDesc('created_at') as $edit)
+                    <li>
+                        {{ $edit->created_at->format('Y.m.d(D) H:i') }} 
+                        @if($edit->type == 'work_time')
+                            근무시간 변경 {{ $edit->old_value }} -> {{ $edit->new_value }}
+                        @elseif($edit->type == 'memo')
+                            메모 내용 변경
+                        @else
+                            {{ $edit->field }} 변경 {{ $edit->old_value }} → {{ $edit->new_value }}
+                        @endif
+                    </li>
+                @endforeach
+            @else
+                <li>수정 기록이 없습니다.</li>
+            @endif
+        </ul>
+    </div>
+    @endif
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function calculateHours() {
+            const startTime = document.getElementById('start_time').value;
+            const endTime = document.getElementById('end_time').value;
+            const workDays = document.getElementById('work_days').value;
+            const start = new Date(`1970-01-01T${startTime}:00`);
+            const end = new Date(`1970-01-01T${endTime}:00`);
+            const diff = (end - start) / (1000 * 60 * 60) - 1; // 점심시간 1시간 제외
+            const weeklyHours = diff * workDays; // 선택한 근무일 기준
+
+            document.getElementById('total_hours').textContent = `총 ${diff}시간`;
+            document.getElementById('weekly_hours').textContent = `${weeklyHours}시간`;
+        }
+
+        document.getElementById('start_time').addEventListener('change', calculateHours);
+        document.getElementById('end_time').addEventListener('change', calculateHours);
+        document.getElementById('work_days').addEventListener('change', calculateHours);
+
+        calculateHours(); // 초기 계산
+    });
+</script>
 @endsection

@@ -17,5 +17,11 @@ class Staff extends Model
         'email',
         'hire_date',
         'status',
+        'memo' // 메모 필드 추가
     ];
+
+    public function editHistory()
+    {
+        return $this->hasMany(EditHistory::class);
+    }
 }
