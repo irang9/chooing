@@ -15,29 +15,21 @@
     <table class="table">
         <thead>
             <tr>
-                <th>이름</th>
+                <th>사원 이름</th>
                 <th>휴가 종류</th>
-                <th>시작일</th>
-                <th>사용일수/시간</th>
-                <th>남은 연차</th>
+                <th>휴가 기간</th>
+                <th>사용 일수</th>
+                <th>남은 일수</th>
             </tr>
         </thead>
         <tbody>
             @foreach($vacations as $vacation)
             <tr>
-                <td><a href="{{ route('vacation.show', $vacation->id) }}">{{ $vacation->staff ? $vacation->staff->name : 'Unknown' }}</a></td>
-                <td>{{ $vacation->type }}</td>
-                <td>{{ $vacation->start_date }}</td>
-                <td>
-                    @if($vacation->type == '연차' || $vacation->type == '경조사')
-                        {{ \Carbon\Carbon::parse($vacation->start_date)->diffInDays(\Carbon\Carbon::parse($vacation->end_date)) + 1 }}일
-                    @elseif($vacation->type == '반차')
-                        4시간
-                    @elseif($vacation->type == '반반차')
-                        2시간
-                    @endif
-                </td>
-                <td>{{ $vacation->remaining_days }}</td>
+                <td><a href="{{ route('vacation.show', $vacation->id) }}">{{ $vacation->staff->name ?? 'Unknown' }}</a></td>
+                <td>{{ $vacation->type}}</td>
+                <td>{{ $vacation->start_date }} ~ {{ $vacation->end_date }} (이번 사용 일수일)</td>
+                <td>총 사용 일수</td>
+                <td>남은 일수</td>
             </tr>
             @endforeach
         </tbody>

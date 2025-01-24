@@ -26,18 +26,27 @@
         </div>
         <div class="mb-3">
             <label for="vacation_days" class="form-label">휴가 일수:</label>
-            <span id="vacation_days">14일 (나중에 휴가 일수 계산식 넣어서 표기할 것)</span>
+            <span id="vacation_days"><strong>14</strong>일 (나중에 휴가 일수 계산식 넣어서 표기할 것)</span>
         </div>
         <div class="mb-3">
-            <label for="type" class="form-label">휴가 종류</label><br>
-            <input type="radio" id="annual" name="type" value="연차" required {{ isset($vacation) && $vacation->type == '연차' ? 'checked' : '' }}>
-            <label for="annual">연차</label><br>
-            <input type="radio" id="half" name="type" value="반차" required {{ isset($vacation) && $vacation->type == '반차' ? 'checked' : '' }}>
-            <label for="half">반차</label><br>
-            <input type="radio" id="quarter" name="type" value="반반차" required {{ isset($vacation) && $vacation->type == '반반차' ? 'checked' : '' }}>
-            <label for="quarter">반반차</label><br>
-            <input type="radio" id="event" name="type" value="경조사" required {{ isset($vacation) && $vacation->type == '경조사' ? 'checked' : '' }}>
-            <label for="event">경조사</label>
+            <label for="type" class="form-label">휴가 종류</label>
+            <div class="d-flex gap-3">
+            <div>
+                <input type="radio" id="annual" name="type" value="연차" required {{ isset($vacation) ? ($vacation->type == '연차' ? 'checked' : '') : 'checked' }}>
+                <label for="annual">연차</label>
+            </div>
+            <div>
+                <input type="radio" id="half" name="type" value="반차" required {{ isset($vacation) && $vacation->type == '반차' ? 'checked' : '' }}>
+                <label for="half">반차</label>
+            </div>
+            <div>
+                <input type="radio" id="quarter" name="type" value="반반차" required {{ isset($vacation) && $vacation->type == '반반차' ? 'checked' : '' }}>
+                <label for="quarter">반반차</label>
+            </div>
+            <div>
+                <input type="radio" id="event" name="type" value="경조사" required {{ isset($vacation) && $vacation->type == '경조사' ? 'checked' : '' }}>
+                <label for="event">경조사(미차감)</label></div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="start_date" class="form-label">시작일 <span id="start_date_display"></span></label>

@@ -24,32 +24,20 @@ class VacationController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'staff_id' => 'required|exists:staff,id',
-            'type' => 'required|string',
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            // ...other validation rules...
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'reason' => 'nullable|string'
         ]);
 
-        $vacation = new Vacation($validatedData);
-        $vacation->status = 'pending'; // 기본값 설정
-        $vacation->save();
-
-        EditHistory::create([
-            'type' => 'vacation',
-            'field' => 'vacation',
-            'old_value' => null,
-            'new_value' => json_encode($vacation->toArray()),
-            'edited_by' => 1, // 임시 사용자 ID
-        ]);
-
-        return redirect()->route('vacations.index')->with('success', '휴가가 등록되었습니다.');
+        Vacation::create($validated);
+        return redirect()->route('vacation.index')->with('success', '휴가가 등록되었습니다.');
     }
 
     public function show($id)
     {
-        $vacation = Vacation::findOrFail($id);
+        $vacation = Vacation::with('staff')->findOrFail($id);
         $staffs = Staff::all();
         return view('vacation.show', compact('vacation', 'staffs'));
     }
@@ -63,28 +51,17 @@ class VacationController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'staff_id' => 'required|exists:staff,id',
-            'type' => 'required|string',
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            // ...other validation rules...
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'reason' => 'nullable|string'
         ]);
 
         $vacation = Vacation::findOrFail($id);
-        $oldValue = $vacation->toArray();
-        $vacation->update($validatedData);
-        $newValue = $vacation->toArray();
+        $vacation->update($validated);
 
-        EditHistory::create([
-            'type' => 'vacation',
-            'field' => 'vacation',
-            'old_value' => json_encode($oldValue),
-            'new_value' => json_encode($newValue),
-            'edited_by' => 1, // 임시 사용자 ID
-        ]);
-
-        return redirect()->route('vacations.index')->with('success', '휴가가 수정되었습니다.');
+        return redirect()->route('vacation.index')->with('success', '휴가가 수정되었습니다.');
     }
 
     public function destroy($id)
@@ -92,6 +69,6 @@ class VacationController extends Controller
         $vacation = Vacation::findOrFail($id);
         $vacation->delete();
 
-        return redirect()->route('vacations.index');
+        return redirect()->route('vacation.index')->with('success', '휴가가 삭제되었습니다.');
     }
 }

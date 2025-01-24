@@ -11,12 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('content'); // content 필드 추가
-            $table->timestamps();
-        });
+        // 이미 존재하는 테이블이므로 생성하지 않음
     }
 
     /**
@@ -24,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        // 이미 존재하는 테이블이므로 삭제하지 않음
     }
 };

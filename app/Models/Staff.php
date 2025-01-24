@@ -17,18 +17,19 @@ class Staff extends Model
         'email',
         'hire_date',
         'status',
-        'memo', // 메모 필드 추가
-        'position', // 직함 필드 추가
-        'birthday', // 생일 필드 추가
-        'start_time', // 출근 시간 필드 추가
-        'end_time', // 퇴근 시간 필드 추가
-        'work_days' // 주 근무시간 필드 추가
+        'memo',
+        'position',
+        'birthday',
+        'start_time',
+        'end_time',
+        'work_days'
     ];
 
     public function editHistory()
     {
         return $this->hasMany(EditHistory::class);
     }
+
     public function vacations()
     {
         return $this->hasMany(Vacation::class);

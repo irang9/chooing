@@ -10,16 +10,19 @@ class Vacation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type', 'start_date', 'end_date', 'status', 'memo'
+        'staff_id',
+        'start_date',
+        'end_date',
+        'reason'
     ];
-
-    public function histories()
-    {
-        return $this->hasMany(VacationHistory::class);
-    }
 
     public function staff()
     {
         return $this->belongsTo(Staff::class);
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(VacationHistory::class);
     }
 }

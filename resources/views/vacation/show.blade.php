@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('vacation.form', ['vacation' => $vacation ?? null, 'staffs' => $staffs ?? null])
+
+    @include('vacation.form', ['vacation' => $vacation, 'staffs' => $staffs])
+
+    
+
 @endsection
+
