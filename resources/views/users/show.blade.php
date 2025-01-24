@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('staff.form', ['staff' => $staff ?? null])
+    @include('users.form', ['user' => $user ?? null])
 @endsection

@@ -4,7 +4,7 @@
 
 <div class="bd-intro">
     <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <div class="mb-3 mb-md-0 d-flex text-nowrap"><a class="btn btn-sm btn-primary" href="{{ route('staff.create') }}" title="사원 등록하기">
+        <div class="mb-3 mb-md-0 d-flex text-nowrap"><a class="btn btn-sm btn-primary" href="{{ route('users.create') }}" title="사원 등록하기">
         사원 등록
         </a>
         </div>
@@ -29,15 +29,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($staff as $member)
+            @foreach($users as $user)
             <tr>
-                <td><a href="{{ route('staff.show', $member->id) }}">{{ $member->name }}</a></td>
-                <td>{{ $member->phone }}</td>
-                <td>{{ $member->company_phone }}</td>
-                <td>{{ $member->extension }}</td>
-                <td>{{ $member->email }}</td>
-                <td>{{ $member->hire_date }}</td>
-                <td>{{ $member->status }}</td>
+                <td><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></td>
+                <td>{{ $user->phone_number }}</td>
+                <td>{{ $user->company_phone }}</td>
+                <td>{{ $user->extension }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->hire_date }}</td>
+                <td>{{ $user->status }}</td>
             </tr>
             @endforeach
         </tbody>

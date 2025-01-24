@@ -25,20 +25,20 @@ document.addEventListener('DOMContentLoaded', function () {
             @if(is_array($vacations) || is_object($vacations))
                 @foreach($vacations as $vacation)
                 {
-                    title: '{{ $vacation->type }} - {{ $vacation->staff ? $vacation->staff->name : 'Unknown' }} ({{ $vacation->duration }})',
+                    title: '{{ $vacation->type }} - {{ $vacation->user ? $vacation->user->name : 'Unknown' }} ({{ $vacation->duration }})',
                     start: '{{ $vacation->start_date }}',
                     end: '{{ $vacation->end_date }}',
-                    url: '{{ route('vacation.show', $vacation->id) }}',
+                    url: '{{ route('vacations.show', $vacation->id) }}', // 라우트 복수형 유지
                     color: 'blue'
                 },
                 @endforeach
             @endif
-            @if(is_array($staff) || is_object($staff))
-                @foreach($staff as $member)
+            @if(is_array($users) || is_object($users))
+                @foreach($users as $user)
                 {
-                    title: '입사일 - {{ $member->name }}',
-                    start: '{{ $member->hire_date }}',
-                    url: '{{ route('staff.show', $member->id) }}',
+                    title: '입사일 - {{ $user->name }}',
+                    start: '{{ $user->hire_date }}',
+                    url: '{{ route('users.show', $user->id) }}', // 라우트 복수형 유지
                     color: 'green'
                 },
                 @endforeach

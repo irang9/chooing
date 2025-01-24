@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Staff;
+use App\Models\User;
 use App\Models\EditHistory;
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
-        $staff = Staff::all();
-        return view('staff.index', compact('staff'));
+        $users = User::all();
+        return view('users.index', compact('users')); // 뷰 폴더도 users로 수정
     }
 
     public function create()
     {
-        return view('staff.create');
+        return view('users.create'); // 뷰 폴더도 users로 수정
     }
 
     public function store(Request $request)
@@ -36,20 +36,20 @@ class StaffController extends Controller
             'work_days' => 'nullable|numeric|min:1|max:7' // 주 근무시간 필드 추가
         ]);
 
-        Staff::create($validated);
-        return redirect()->route('staff.index')->with('success', '사원이 등록되었습니다.');
+        User::create($validated); // Staff → User로 수정
+        return redirect()->route('users.index')->with('success', '사용자가 등록되었습니다.');
     }
 
     public function show($id)
     {
-        $staff = Staff::findOrFail($id);
-        return view('staff.show', compact('staff'));
+        $user = User::findOrFail($id); // Staff → User로 수정
+        return view('users.show', compact('user')); // 뷰 폴더와 변수명 수정
     }
 
     public function edit($id)
     {
-        $staff = Staff::findOrFail($id);
-        return view('staff.edit', compact('staff'));
+        $user = User::findOrFail($id); // Staff → User로 수정
+        return view('users.edit', compact('user')); // 뷰 폴더와 변수명 수정
     }
 
     public function update(Request $request, $id)
@@ -69,15 +69,15 @@ class StaffController extends Controller
             'work_days' => 'nullable|numeric|min:1|max:7' // 주 근무시간 필드 추가
         ]);
 
-        $staff = Staff::findOrFail($id);
-        $oldValues = $staff->getOriginal();
+        $user = User::findOrFail($id); // Staff → User로 수정
+        $oldValues = $user->getOriginal(); // 변수명 변경
 
-        $staff->update($validated);
+        $user->update($validated);
 
         foreach ($validated as $key => $value) {
             if ($oldValues[$key] != $value) {
                 EditHistory::create([
-                    'staff_id' => $staff->id,
+                    'user_id' => $user->id, // staff_id → user_id
                     'type' => $key == 'memo' ? 'memo' : 'field',
                     'field' => $key,
                     'old_value' => $oldValues[$key],
@@ -86,14 +86,14 @@ class StaffController extends Controller
             }
         }
 
-        return redirect()->route('staff.show', $staff->id)->with('success', '사원이 수정되었습니다.');
+        return redirect()->route('users.show', $user->id)->with('success', '사용자가 수정되었습니다.');
     }
 
     public function destroy($id)
     {
-        $staff = Staff::findOrFail($id);
-        $staff->delete();
+        $user = User::findOrFail($id); // Staff → User로 수정
+        $user->delete();
 
-        return redirect()->route('staff.index');
+        return redirect()->route('users.index');
     }
 }

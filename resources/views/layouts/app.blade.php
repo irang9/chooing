@@ -40,7 +40,7 @@
                             <a class="nav-link" href="{{ url('/vacation') }}">휴가 관리</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('staff.index') }}">사원 정보</a>
+                            <a class="nav-link" href="{{ route('users.index') }}">사원 정보</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">공지사항</a>
