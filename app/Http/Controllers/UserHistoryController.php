@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\EditHistory;
 use Illuminate\Http\Request;
 
-class EditHistoryController extends Controller
+class UserHistoryController extends Controller
 {
     public function destroy($id)
     {

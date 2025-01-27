@@ -31,3 +31,9 @@ body {
         margin-top:auto;
     }
 }
+
+.nav-link {
+	&.active {
+		font-weight:bold;
+	}
+}

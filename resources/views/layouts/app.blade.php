@@ -37,26 +37,26 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/vacation') }}">휴가 관리</a>
+                            <a class="nav-link {{ request()->is('vacation*') ? 'active' : '' }}" href="{{ url('/vacation') }}">휴가 관리</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">사원 정보</a>
+                            <a class="nav-link {{ request()->is('users*') ? 'active' : '' }}" href="{{ route('users.index') }}">사원 정보</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">공지사항</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/office/index') }}">업무 자료</a>
+                            <a class="nav-link {{ request()->is('office*') ? 'active' : '' }}" href="{{ route('office.index') }}">업무 자료</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index') }}">게시판</a>
+                            <a class="nav-link {{ request()->is('posts*') ? 'active' : '' }}" href="{{ route('posts.index') }}">게시판</a>
                         </li>
                     </ul>
                     <!-- 로그인/로그아웃과 알림, 검색 (오른쪽 정렬) -->
                     <ul class="navbar-nav ms-auto">
                         <!-- 관리 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/admin/dashboard') }}">관리</a>
+                            <a class="nav-link {{ request()->is('admin*') ? 'active' : '' }}" href="{{ url('/admin/dashboard') }}">관리</a>
                         </li>
                         <!-- 알림 아이콘 -->
                         <li class="nav-item">
@@ -66,7 +66,7 @@
                         </li>
                         <!-- 로그인/로그아웃 -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('login') }}">로그인</a>
+                            <a class="nav-link {{ request()->is('login') ? 'active' : '' }}" href="{{ url('login') }}">로그인</a>
                         </li>
                         <!-- 검색 -->
                         <li class="nav-item">

@@ -15,7 +15,7 @@
             @method('PUT')
         @endif
         <div class="mb-3">
-            <label class="form-label">이름</label>
+            <label class="form-label">이름 <span class="text-danger">*</span></label>
             <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}" required>
         </div>
         <div class="mb-3">
@@ -39,8 +39,12 @@
             <input type="text" class="form-control" name="extension" value="{{ $user->extension ?? '' }}">
         </div>
         <div class="mb-3">
-            <label class="form-label">이메일</label>
-            <input type="email" class="form-control" name="email" value="{{ $user->email ?? '' }}">
+            <label class="form-label">이메일(아이디) <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" name="email" value="{{ $user->email ?? '' }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">비밀번호 <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" name="password" required>
         </div>
         <div class="mb-3">
             <label class="form-label">입사일</label>
