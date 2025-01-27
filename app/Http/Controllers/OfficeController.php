@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CompanyInfo;
 
 class OfficeController extends Controller
 {
     public function index()
     {
-        return view('office.index'); // resources/views/office/index.blade.php
+        $companyInfo = CompanyInfo::all();
+        return view('office.index', compact('companyInfo')); // resources/views/office/index.blade.php
     }
 
     public function link()
