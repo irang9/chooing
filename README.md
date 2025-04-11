@@ -7,9 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Laravel 소개
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel은 표현력이 풍부하고 우아한 문법을 가진 웹 애플리케이션 프레임워크입니다. 우리는 개발이 진정으로 충만한 경험이 되기 위해서는 즐겁고 창의적인 과정이어야 한다고 믿습니다. Laravel은 많은 웹 프로젝트에서 사용되는 일반적인 작업들을 쉽게 처리할 수 있도록 도와줌으로써 개발의 어려움을 덜어줍니다:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).

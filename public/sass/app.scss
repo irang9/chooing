@@ -1,39 +1,44 @@
 @charset "utf-8";
 
-@import 'base/typo';
+// @import 'base/typo';
+// default font
+@import 'base/typo/spoqa';
+
+// gooogle material icons
+@import 'base/typo/google';
 
 // typo
-* {
-    font-family: $font-basic !important;
-}
-button {
-    white-space: nowrap;
-}
-.bd-intro {
-    margin-top:3rem;
-}
-.bd-content {
-    margin-bottom:3rem;
-}
-html,
-body {
-    height:100%;
-}
-body {
-    display:flex;
-    flex-direction: column;
-    header {
-    }
-    .bd-main {
-        flex:1;
-    }
-    footer {
-        margin-top:auto;
-    }
-}
+// * {
+//     font-family: $font-basic !important;
+// }
+// button {
+//     white-space: nowrap;
+// }
+// .bd-intro {
+//     margin-top:3rem;
+// }
+// .bd-content {
+//     margin-bottom:3rem;
+// }
+// html,
+// body {
+//     height:100%;
+// }
+// body {
+//     display:flex;
+//     flex-direction: column;
+//     header {
+//     }
+//     .bd-main {
+//         flex:1;
+//     }
+//     footer {
+//         margin-top:auto;
+//     }
+// }
 
-.nav-link {
-	&.active {
-		font-weight:bold;
-	}
-}
+// .nav-link {
+// 	&.active {
+// 		font-weight:bold;
+// 	}
+// }
