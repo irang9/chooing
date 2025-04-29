@@ -2,10 +2,10 @@
 
 // @import 'base/typo';
 // default font
-@import 'base/typo/spoqa';
+@use 'base/typo/spoqa' as *;
 
 // gooogle material icons
-@import 'base/typo/google';
+@use 'base/typo/google' as *;
 
 // typo
 // * {

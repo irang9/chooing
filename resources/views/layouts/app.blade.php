@@ -18,7 +18,7 @@
 
 </head>
 <body>
-@if(request()->ip() === '175.198.26.89')
+@if(in_array(request()->ip(), ['175.198.26.89', '210.182.38.72'])) <!-- 집+회사 -->
     <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-blue-600">
         <nav class="relative max-w-[66rem] w-full md:flex md:items-center md:justify-between md:gap-3 mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <!-- Logo w/ Collapse Button -->
