@@ -9,6 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- blade name css -->
     @php
@@ -17,7 +18,7 @@
     @endphp
     <link href="{{ file_exists($cssFile) ? asset('css/' . $currentView . '.css') : '' }}" rel="stylesheet">
 
-
+    
 </head>
 <body>
 @if(in_array(request()->ip(), ['175.198.26.89', '210.182.38.72']))
@@ -98,20 +99,13 @@
     </div>
 
     <footer class="container relative max-w-[66rem] w-full md:flex md:items-center md:justify-between md:gap-3 mx-auto px-4 sm:px-6 lg:px-8 py-2">
-        <div class="container-fluid text-end">
+        <div class="container text-end">
             <p>문의 : 강이랑</p>
         </div>
     </footer>
 
-    <!-- Tailwind & Preline -->
-    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/preline@latest/dist/preline.min.js"></script> -->
-    <script src="{{ asset('js/tailwind.config.js') }}"></script>
-
 @else
     <div class="flex items-center justify-center h-screen">접속이 제한되었습니다.</div>
 @endif
-
-<script src="./assets/vendor/preline/dist/preline.js"></script>
 </body>
 </html>
